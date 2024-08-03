@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int          @id @default(autoincrement())
+  email    String       @unique
+  disable  Boolean      @default(false)
+  verified Boolean      @default(false)
+  password String
+  role     String
+  details  UserDetails?
+}
+
+model UserDetails {
+  id           Int           @id @default(autoincrement())
+  userId       Int           @unique
+  user         User          @relation(fields: [userId], references: [id])
+  name         String
+  email        String
+  company      String
+  designation  String
+  role         String
+  contactNo    String
+  profileImage String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  subscription Subscription?
+  posts        Post[]
+
+  @@unique([contactNo, email])
+  @@map("userDetails")
+}
+
+model Post {
+  id            Int         @id @default(autoincrement())
+  title         String
+  content       String
+  image         String
+  urlLink       String
+  zipCode       String
+  state         String
+  facebookLink  String?
+  instagramLink String?
+  twitterLink   String?
+  published     Boolean     @default(false)
+  disable       Boolean     @default(false)
+  authorId      Int
+  author        UserDetails @relation(fields: [authorId], references: [id])
+  createdAt     DateTime    @default(now())
+  clicks        PostClick[]
+
+  @@map("posts")
+}
+
+model PostClick {
+  id         Int  @id @default(autoincrement())
+  postId     Int
+  post       Post @relation(fields: [postId], references: [id])
+  clickCount Int  @default(1)
+
+  @@map("postClicks")
+}
+
+model Subscription {
+  id        Int         @id @default(autoincrement())
+  userId    Int         @unique
+  user      UserDetails @relation(fields: [userId], references: [id])
+  startDate DateTime
+  endDate   DateTime
+  payments  Payment[]
+
+  @@map("subscriptions")
+}
+
+model Payment {
+  id             Int          @id @default(autoincrement())
+  subscriptionId Int
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  paymentDate    DateTime     @default(now())
+  amount         Float
+  status         String
+
+  @@map("payments")
+}

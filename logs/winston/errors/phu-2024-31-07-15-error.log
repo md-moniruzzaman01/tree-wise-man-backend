@@ -1,0 +1,11 @@
+Wed Jul 31 2024 15:48:41 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden
+Wed Jul 31 2024 15:49:17 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden
+Wed Jul 31 2024 15:49:26 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden
+Wed Jul 31 2024 15:50:42 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+
+Unique constraint failed on the fields: (`email`)
+Wed Jul 31 2024 15:50:51 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden
+Wed Jul 31 2024 15:51:51 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden update
+Wed Jul 31 2024 15:52:36 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden update

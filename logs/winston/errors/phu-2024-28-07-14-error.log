@@ -1,0 +1,66 @@
+Sun Jul 28 2024 14:44:3 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Sun Jul 28 2024 14:48:30 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Sun Jul 28 2024 14:51:19 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Sun Jul 28 2024 14:51:27 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "name"
+    ],
+    "message": "name is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "email"
+    ],
+    "message": "email is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "profileImage"
+    ],
+    "message": "Profile image is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "contactNo"
+    ],
+    "message": "Contact no is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "designation"
+    ],
+    "message": "designation is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "company"
+    ],
+    "message": "company name is required"
+  }
+]
+Sun Jul 28 2024 14:57:12 } [tree-wise-man] error: 🐱‍🏍 globalErrorHandler ~~ Expected double-quoted property name in JSON at position 198

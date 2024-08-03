@@ -1,0 +1,15 @@
+{
+  "keep": {
+    "days": true,
+    "amount": 14
+  },
+  "auditLog": "D:\\NEC Group\\warehouse\\Backend\\logs\\winston\\successes\\.3c7f1bd6ecc9d3f5bae2c90a8226707f8cc781b6-audit.json",
+  "files": [
+    {
+      "date": 1719747985017,
+      "name": "D:\\NEC Group\\warehouse\\Backend\\logs\\winston\\successes\\phu-2024-30-06-17-success.log",
+      "hash": "5719356942a62d4955fdba86ba9fc8509ce7f7f1b4d8692510182f271b6ecbd6"
+    }
+  ],
+  "hashType": "sha256"
+}

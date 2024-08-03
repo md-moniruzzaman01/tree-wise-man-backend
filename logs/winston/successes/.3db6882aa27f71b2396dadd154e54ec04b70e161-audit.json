@@ -1,0 +1,65 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\.3db6882aa27f71b2396dadd154e54ec04b70e161-audit.json",
+    "files": [
+        {
+            "date": 1721896267541,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-25-07-14-success.log",
+            "hash": "9766dabdad352b88c9b0abe0b771ebd970a43881d29f15c35efdcda3d8a25d42"
+        },
+        {
+            "date": 1722153751415,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-28-07-14-success.log",
+            "hash": "abe05efadf49eb8e3c42629956b128ca6c9c8a2b40f7f72232cccb9d0c8f78f7"
+        },
+        {
+            "date": 1722243687955,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-29-07-15-success.log",
+            "hash": "bb655be910efe8f975d20e73be9f6e6e30a0f1399e34cceab159ee19a2fe30f8"
+        },
+        {
+            "date": 1722406216989,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-31-07-12-success.log",
+            "hash": "c0daf13290709b68ac91fc8aad2e89121772fb43699d14c7af4552af0d962c5a"
+        },
+        {
+            "date": 1722419112610,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-31-07-15-success.log",
+            "hash": "00fe5e0776d91bc8a4920f9aeeac51a2ca62518946ea5a0a2c921677436c9489"
+        },
+        {
+            "date": 1722420056873,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-31-07-16-success.log",
+            "hash": "2ab35f23e6fbf300f7bca4dfff38bffe18803a84e52d4ce54ceda50a1919adf7"
+        },
+        {
+            "date": 1722425538604,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-31-07-17-success.log",
+            "hash": "3da4cb90e72c6cbe2064098a4eb0a38fac26e9dbe176a23925c8819142639ded"
+        },
+        {
+            "date": 1722496135811,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-01-08-13-success.log",
+            "hash": "7a66428cb6948a27926f7971557ce684b112cc45c1893a06930eddcfa929fa75"
+        },
+        {
+            "date": 1722509200237,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-01-08-16-success.log",
+            "hash": "31e20fa258bd2e400633ebda336a92bdc4050ac74c3208fb200ad6a44517dcbb"
+        },
+        {
+            "date": 1722511444553,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-01-08-17-success.log",
+            "hash": "8f90ca359e80160036b128537a1d6531363a06a96274cc92a30580e6083383d8"
+        },
+        {
+            "date": 1722663564763,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\successes\\phu-2024-03-08-11-success.log",
+            "hash": "ee9488139a7b389edc020ffe4fc90feb1f1a7c34f33803c6a8f1c967f94211ab"
+        }
+    ],
+    "hashType": "sha256"
+}
