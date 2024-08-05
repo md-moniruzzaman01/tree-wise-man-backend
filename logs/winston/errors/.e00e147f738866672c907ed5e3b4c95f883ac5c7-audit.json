@@ -74,6 +74,11 @@
             "date": 1722666762958,
             "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\errors\\phu-2024-03-08-12-error.log",
             "hash": "8ac0eb725ebc52b86d8d5d36265be412767d7488c206f4ab487b0f9522ac3e91"
+        },
+        {
+            "date": 1722803234801,
+            "name": "D:\\client project\\tree wise man\\backend\\logs\\winston\\errors\\phu-2024-05-08-02-error.log",
+            "hash": "27fd327b96e5a5f0a381de738e6823f185026aa8a060be3b9aaf3beb041b197c"
         }
     ],
     "hashType": "sha256"
