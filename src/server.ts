@@ -10,13 +10,13 @@ process.on('uncaughtException', error => {
 
 let server: Server;
 async function bootstrap() {
-  server = app.listen(config.port, () => {
-    console.log(`Server running on port ${config.port}`)
-    logger.info(`Server running on port ${config.port}`)
-  })
-  // server = app.listen(5000, '0.0.0.0', () => {
-  //   console.log(`Application listening on port ${config.port}`);
-  // });
+  // server = app.listen(config.port, () => {
+  //   console.log(`Server running on port ${config.port}`)
+  //   logger.info(`Server running on port ${config.port}`)
+  // })
+  server = app.listen(5000, '0.0.0.0', () => {
+    console.log(`Application listening on port ${config.port}`);
+  });
   const exitHandler = () => {
     if (server) {
       server.close(() => {

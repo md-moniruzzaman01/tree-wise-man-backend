@@ -1,7 +1,7 @@
 {
-  "name": "warehouse_backend",
+  "name": "tree_wise_man_backend",
   "version": "1.0.0",
-  "description": "Nec group indore warehouse maintain software backend",
+  "description": "Tree wise man project",
   "main": "src/server.ts",
   "scripts": {
     "start": "node dist/server.js",
@@ -13,7 +13,8 @@
     "prettier:fix": "prettier --write .",
     "lint-prettier": "yarn lint:check && yarn prettier:check",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "prisma generate"
   },
   "author": "",
   "license": "ISC",
