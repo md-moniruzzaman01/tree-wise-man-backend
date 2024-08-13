@@ -157,6 +157,7 @@ const getAllMyFromDB = async (
         select: {
           id: true,
           name: true,
+          designation: true,
           role: true,
           profileImage: true,
           subscription: {

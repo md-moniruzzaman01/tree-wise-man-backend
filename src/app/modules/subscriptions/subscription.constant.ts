@@ -1,3 +1,7 @@
-export const subcriptionFilterableFields = ['searchTerm','startDate','endDate'];
+export const subcriptionFilterableFields = [
+  'searchTerm',
+  'startDate',
+  'endDate',
+]
 
-export const subcriptionSearchableFields = ['userId'];
+export const subcriptionSearchableFields = ['userId']

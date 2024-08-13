@@ -14,7 +14,8 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 })
 
 // Determine the log directory based on the environment
-const logDir = process.env.LOG_DIR || path.join(process.cwd(), 'logs', 'winston')
+const logDir =
+  process.env.LOG_DIR || path.join(process.cwd(), 'logs', 'winston')
 const successLogDir = path.join(logDir, 'successes')
 const errorLogDir = path.join(logDir, 'errors')
 

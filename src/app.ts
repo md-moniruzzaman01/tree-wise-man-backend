@@ -6,20 +6,15 @@ import routes from './app/routes'
 
 import cookieParser from 'cookie-parser'
 
-const app: Application = express();
+const app: Application = express()
 
-app.use(cors());
-app.use(cookieParser());
+app.use(cors())
+app.use(cookieParser())
 
 //parser
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));
-
-
-
-
-
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
   res.send('The Tree wise man')

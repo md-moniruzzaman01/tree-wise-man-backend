@@ -79,13 +79,12 @@ const updateIntoDB = async (
     },
     data: {
       ...payload,
-      user: payload.email
-        ? {
-            update: {
-              email: payload.email,
-            },
-          }
-        : undefined,
+      user: {
+        update: {
+          email: payload.email,
+          role: payload.role,
+        },
+      },
     },
     include: {
       user: true,

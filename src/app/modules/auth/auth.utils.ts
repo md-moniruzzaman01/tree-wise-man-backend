@@ -22,9 +22,9 @@ export async function isUserExist(
       password: true,
       details: {
         select: {
-          id: true
-        }
-      }
+          id: true,
+        },
+      },
     },
   })
 
