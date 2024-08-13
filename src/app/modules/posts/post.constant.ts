@@ -1,3 +1,8 @@
-export const postFilterableFields = ['searchTerm','disable','authorId','published'];
+export const postFilterableFields = [
+  'searchTerm',
+  'disable',
+  'published',
+  'state',
+]
 
-export const postSearchableFields = ['zipCode','title','state'];
+export const postSearchableFields = ['zipCode', 'title', 'state']

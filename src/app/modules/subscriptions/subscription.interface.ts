@@ -1,9 +1,9 @@
 export type ISubcriptionFilterRequest = {
-    searchTerm?: string;
-};
+  searchTerm?: string
+}
 
 export type ISubcription = {
-    startDate: Date;
-    endDate: Date;
-    userId: number;
+  startDate: Date
+  endDate: Date
+  userId: string
 }
