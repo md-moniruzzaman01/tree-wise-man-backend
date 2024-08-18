@@ -67,6 +67,9 @@ const getByIdFromDB = async (id: number): Promise<UserDetails | null> => {
     where: {
       id,
     },
+    include: {
+      subscription: true,
+    },
   })
   return result
 }

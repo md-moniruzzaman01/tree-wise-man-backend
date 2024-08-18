@@ -34,7 +34,9 @@ const update = zod_1.z.object({
         contactNo: zod_1.z.string().optional(),
         designation: zod_1.z.string().optional(),
         company: zod_1.z.string().optional(),
-        role: zod_1.z.enum(["user", "admin", "super_admin"]).optional(),
+        role: zod_1.z
+            .enum(['user', 'admin', 'super_admin'])
+            .optional(),
     }),
 });
 exports.UserValidation = {

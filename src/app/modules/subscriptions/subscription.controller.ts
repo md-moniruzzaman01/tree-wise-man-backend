@@ -9,11 +9,24 @@ import { paginationFields } from '../../../constants/pagination'
 import { subscriptionService } from './subcriptions.service'
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
+  const { month } = req.body
+  if (month !== undefined || month !== null || month !== 0) {
+    req.body.amount = month * 12
+  }
   const result = await subscriptionService.insertIntoDB(req.body)
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'subscription created successfully',
+    data: result,
+  })
+})
+const executePayment = catchAsync(async (req: Request, res: Response) => {
+  const result = await subscriptionService.executePayment(req.body)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'subscription verify successfully',
     data: result,
   })
 })
@@ -58,4 +71,5 @@ export const subscriptionController = {
   getAllFromDB,
   updateOneInDB,
   deleteByIdFromDB,
+  executePayment,
 }

@@ -68,7 +68,33 @@ const update = z.object({
     ),
 })
 
+const varify = z.object({
+  body: z.object({
+    PayerID: z.string({
+      required_error: 'Payer ID is required',
+    }),
+    paymentId: z.string({
+      required_error: 'payment Id  is required',
+    }),
+  }),
+})
+const createpayment = z.object({
+  body: z.object({
+    month: z
+      .number({
+        required_error: 'Month is required',
+      })
+      .min(1, { message: 'Month must be between 1 and 12' })
+      .max(12, { message: 'Month must be between 1 and 12' }),
+    userId: z.string({
+      required_error: 'user Id  is required',
+    }),
+  }),
+})
+
 export const subscriptionValidations = {
   create,
   update,
+  varify,
+  createpayment,
 }

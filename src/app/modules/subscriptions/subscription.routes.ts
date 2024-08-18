@@ -13,14 +13,26 @@ router.get(
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
   subscriptionController.getAllFromDB,
 )
-
 router.post(
-  '/create',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
-
-  validateRequest(subscriptionValidations.create),
+  '/payment',
+  validateRequest(subscriptionValidations.createpayment),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),createpayment
   subscriptionController.insertIntoDB,
 )
+router.post(
+  '/verify',
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+  validateRequest(subscriptionValidations.varify),
+  subscriptionController.executePayment,
+)
+
+// router.post(
+//   '/create',
+//   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+
+//   validateRequest(subscriptionValidations.create),
+//   subscriptionController.insertIntoDB,
+// )
 
 router.patch(
   '/:id',

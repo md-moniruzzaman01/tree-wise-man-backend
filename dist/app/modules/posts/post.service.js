@@ -84,6 +84,8 @@ const getAllFromDB = (filters, options) => __awaiter(void 0, void 0, void 0, fun
                     id: true,
                     name: true,
                     role: true,
+                    designation: true,
+                    contactNo: true,
                     profileImage: true,
                 },
             },
@@ -142,7 +144,6 @@ const getAllMyFromDB = (filters, options, user) => __awaiter(void 0, void 0, voi
                 select: {
                     id: true,
                     name: true,
-                    designation: true,
                     role: true,
                     profileImage: true,
                     subscription: {

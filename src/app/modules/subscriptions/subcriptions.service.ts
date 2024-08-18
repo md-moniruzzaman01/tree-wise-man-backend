@@ -8,18 +8,97 @@ import prisma from '../../../shared/prisma'
 import { IPaginationOptions } from '../../../interfaces/pagination'
 import { paginationHelpers } from '../../../helpers/paginationHelper'
 import { IGenericResponse } from '../../../interfaces/common'
+import config from '../../../config'
+import paypal from '../../../shared/paypal'
 
-const insertIntoDB = async (data: ISubcription): Promise<Subscription> => {
-  const result = await prisma.subscription.create({
-    data: {
-      startDate: data.startDate,
-      endDate: data.endDate,
-      userId: parseInt(data.userId),
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const insertIntoDB = async (data: any): Promise<any> => {
+  console.log('data', data)
+  const create_payment_json = {
+    intent: 'sale',
+    payer: {
+      payment_method: 'paypal',
     },
+    redirect_urls: {
+      return_url: config.paypal.return_url,
+      cancel_url: config.paypal.cancel_url,
+    },
+    transactions: [
+      {
+        amount: {
+          currency: 'USD',
+          total: '50.00',
+        },
+        description: 'Monthly Subscription',
+      },
+    ],
+  }
+  return new Promise((resolve, reject) => {
+    paypal.payment.create(create_payment_json, (error, payment) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(payment)
+      }
+    })
   })
-  return result
+
+  // const result = await paypal.payment.create(create_payment_json, function (error, payment) {
+  //   if (error) {
+  //     console.error(error);
+  //     throw new ApiError(500,'Payment failed');
+  //   } else {
+  //     console.log("Create Payment Response");
+  //     // console.log(payment);
+  //     // data = payment;
+  //     return payment
+
+  //   }
+  // });
+  // return result
 }
 
+// const insertIntoDB = async (data: ISubcription): Promise<Subscription> => {
+//   const result = await prisma.subscription.create({
+//     data: {
+//       startDate: data.startDate,
+//       endDate: data.endDate,
+//       userId: parseInt(data.userId),
+//     },
+//   })
+//   return result
+// }
+
+const executePayment = async (data: { PayerID: string; paymentId: string }) => {
+  const payerId = data.PayerID
+  const paymentId = data.paymentId
+  console.log('data', data)
+  const execute_payment_json = {
+    payer_id: payerId,
+    transactions: [
+      {
+        amount: {
+          currency: 'USD',
+          total: '50.00',
+        },
+      },
+    ],
+  }
+
+  return new Promise((resolve, reject) => {
+    paypal.payment.execute(
+      paymentId,
+      execute_payment_json,
+      (error, payment) => {
+        if (error) {
+          reject(error)
+        } else {
+          resolve(payment)
+        }
+      },
+    )
+  })
+}
 const updateOneInDB = async (
   id: string,
   payload: Partial<Subscription>,
@@ -98,4 +177,5 @@ export const subscriptionService = {
   getAllFromDB,
   updateOneInDB,
   deleteByIdFromDB,
+  executePayment,
 }
