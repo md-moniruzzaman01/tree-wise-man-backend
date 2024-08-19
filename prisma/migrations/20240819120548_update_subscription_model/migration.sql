@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "subscriptions" ALTER COLUMN "startDate" SET DEFAULT CURRENT_TIMESTAMP,
+ALTER COLUMN "endDate" DROP NOT NULL;

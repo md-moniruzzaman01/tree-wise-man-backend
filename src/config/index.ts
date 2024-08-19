@@ -26,7 +26,9 @@ export default {
     success_url: process.env.PAYPAL_SUCCESS_URL,
     currency_code: process.env.PAYPAL_CURRENCY_CODE,
     error_url: process.env.PAYPAL_ERROR_URL,
-    charge_amount: process.env.MONTHLY_CHARGE,
+    charge_amount: process.env.MONTHLY_CHARGE
+      ? Number(process.env.MONTHLY_CHARGE)
+      : 12,
   },
   resetlink: process.env.RESET_PASS_UI_LINK,
   email: process.env.EMAIL,

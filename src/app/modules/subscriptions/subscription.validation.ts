@@ -86,7 +86,7 @@ const createpayment = z.object({
       })
       .min(1, { message: 'Month must be between 1 and 12' })
       .max(12, { message: 'Month must be between 1 and 12' }),
-    userId: z.string({
+    userId: z.number({
       required_error: 'user Id  is required',
     }),
   }),

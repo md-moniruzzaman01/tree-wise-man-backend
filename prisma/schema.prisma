@@ -76,8 +76,8 @@ model Subscription {
   id        Int         @id @default(autoincrement())
   userId    Int         @unique
   user      UserDetails @relation(fields: [userId], references: [id])
-  startDate DateTime
-  endDate   DateTime
+  startDate DateTime    @default(now())
+  endDate   DateTime?
   payments  Payment[]
 
   @@map("subscriptions")
@@ -87,9 +87,10 @@ model Payment {
   id             Int          @id @default(autoincrement())
   subscriptionId Int
   subscription   Subscription @relation(fields: [subscriptionId], references: [id])
-  paymentDate    DateTime     @default(now())
+  paymentId      String       @unique
   amount         Float
   status         String
+  createdAt      DateTime     @default(now())
 
   @@map("payments")
 }

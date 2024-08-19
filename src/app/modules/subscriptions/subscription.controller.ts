@@ -7,12 +7,18 @@ import pick from '../../../shared/pick'
 import { subcriptionFilterableFields } from './subscription.constant'
 import { paginationFields } from '../../../constants/pagination'
 import { subscriptionService } from './subcriptions.service'
+import config from '../../../config'
+import ApiError from '../../../errors/ApiError'
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { month } = req.body
-  if (month !== undefined || month !== null || month !== 0) {
-    req.body.amount = month * 12
+  if (typeof month !== 'number' || month <= 0) {
+    throw new ApiError(400, 'Invalid month value')
   }
+
+  const chargeAmount = config.paypal.charge_amount
+  req.body.amount = month * chargeAmount
+
   const result = await subscriptionService.insertIntoDB(req.body)
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -21,6 +27,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+
 const executePayment = catchAsync(async (req: Request, res: Response) => {
   const result = await subscriptionService.executePayment(req.body)
   sendResponse(res, {

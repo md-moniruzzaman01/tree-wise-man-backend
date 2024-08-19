@@ -2,8 +2,10 @@ export type ISubcriptionFilterRequest = {
   searchTerm?: string
 }
 
-export type ISubcription = {
+export type ISubscription = {
   startDate: Date
   endDate: Date
-  userId: string
+  amount: number
+  userId: number
+  month: number
 }
