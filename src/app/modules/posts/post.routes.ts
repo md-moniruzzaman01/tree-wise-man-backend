@@ -4,6 +4,7 @@ import { ENUM_USER_ROLE } from '../../../enums/user'
 import validateRequest from '../../middlewares/validateRequest'
 import { postValidations } from './post.validation'
 import { postController } from './post.controller'
+import subscriptionCheck from '../../middlewares/subscriptionCheck'
 //
 const router = express.Router()
 
@@ -36,20 +37,19 @@ router.get(
 router.post(
   '/create',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
-
+  subscriptionCheck(),
   validateRequest(postValidations.create),
   postController.insertIntoDB,
 )
 
 router.patch(
   '/click/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
   postController.updateViewCount,
 )
 router.patch(
   '/admin/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-
   validateRequest(postValidations.update),
   postController.AdvanceUpdateOneInDB,
 )
@@ -57,6 +57,7 @@ router.patch(
 router.patch(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+  subscriptionCheck(),
   validateRequest(postValidations.update),
   postController.updateOneInDB,
 )
@@ -68,7 +69,7 @@ router.get(
 )
 router.delete(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
   postController.deleteByIdFromDB,
 )
 

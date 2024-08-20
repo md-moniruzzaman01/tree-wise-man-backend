@@ -28,7 +28,9 @@ const getAllFromDB = async (
       })),
     })
   }
-
+  andConditions.push({
+    role: 'admin',
+  })
   if (Object.keys(filterData).length > 0) {
     andConditions.push({
       AND: Object.entries(filterData).map(([field, value]) => ({
@@ -64,6 +66,7 @@ const getByIdFromDB = async (id: number): Promise<UserDetails | null> => {
   const result = await prisma.userDetails.findUnique({
     where: {
       id,
+      role: 'admin',
     },
   })
   return result
@@ -76,6 +79,7 @@ const updateIntoDB = async (
   const result = await prisma.userDetails.update({
     where: {
       id: parseInt(id),
+      role: 'admin',
     },
     data: {
       ...payload,
@@ -99,6 +103,7 @@ const deleteFromDB = async (id: string): Promise<UserDetails> => {
   const user = await prisma.userDetails.findUnique({
     where: {
       id: parsedId,
+      role: 'admin',
     },
     include: {
       user: true,

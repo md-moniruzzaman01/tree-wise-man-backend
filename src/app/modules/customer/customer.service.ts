@@ -31,6 +31,10 @@ const getAllFromDB = async (
     })
   }
 
+  andConditions.push({
+    role: 'user',
+  })
+
   if (Object.keys(filterData).length > 0) {
     andConditions.push({
       AND: Object.entries(filterData).map(([field, value]) => ({
@@ -46,6 +50,14 @@ const getAllFromDB = async (
     where: whereConditions,
     skip,
     take: limit,
+    include: {
+      subscription: {
+        select: {
+          startDate: true,
+          endDate: true,
+        },
+      },
+    },
   })
 
   const total = await prisma.userDetails.count({
@@ -66,6 +78,7 @@ const getByIdFromDB = async (id: number): Promise<UserDetails | null> => {
   const result = await prisma.userDetails.findUnique({
     where: {
       id,
+      role: 'user',
     },
     include: {
       subscription: true,
@@ -81,6 +94,7 @@ const updateIntoDB = async (
   const result = await prisma.userDetails.update({
     where: {
       id: parseInt(id),
+      role: 'user',
     },
     data: {
       ...payload,
@@ -99,12 +113,14 @@ const updateIntoDB = async (
   return result
 }
 
-const deleteFromDB = async (id: string): Promise<UserDetails> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const deleteFromDB = async (id: string, ReqUser: any): Promise<UserDetails> => {
   const parsedId = parseInt(id)
 
   const user = await prisma.userDetails.findUnique({
     where: {
       id: parsedId,
+      role: 'user',
     },
     include: {
       user: true,
@@ -119,6 +135,15 @@ const deleteFromDB = async (id: string): Promise<UserDetails> => {
 
   if (!user) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'user not found')
+  }
+  const isAdmin = user.role === 'admin'
+  const isOwner = user.userId === ReqUser.id
+
+  if (!isAdmin && !isOwner) {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      'You are not authorized to delete this user',
+    )
   }
 
   return await prisma.$transaction(async prisma => {

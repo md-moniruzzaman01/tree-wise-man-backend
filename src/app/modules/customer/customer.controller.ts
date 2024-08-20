@@ -47,7 +47,8 @@ const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
 
 const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params
-  const result = await customerService.deleteFromDB(id)
+  const user = req.user
+  const result = await customerService.deleteFromDB(id, user)
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

@@ -5,6 +5,7 @@ import { IPaginationOptions } from '../../../interfaces/pagination'
 import { IGenericResponse } from '../../../interfaces/common'
 import { IPost, IPostFilterRequest } from './post.interface'
 import { postSearchableFields } from './post.constant'
+import ApiError from '../../../errors/ApiError'
 
 const insertIntoDB = async (data: IPost): Promise<Post> => {
   //authorId
@@ -302,9 +303,26 @@ const updateOneInDB = async (
   return result
 }
 
-const deleteByIdFromDB = async (id: string): Promise<Post> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const deleteByIdFromDB = async (id: string, user: any): Promise<Post> => {
   const parsedId = parseInt(id)
+  // Find the post along with the author details
+  const post = await prisma.post.findUnique({
+    where: { id: parsedId },
+    include: { author: { include: { user: true } } },
+  })
 
+  if (!post) {
+    throw new Error('Post not found')
+  }
+
+  // Check if the user is an admin or the author of the post
+  const isAdmin = post.author.user.role === 'admin'
+  const isOwner = post.author.userId === user.id
+
+  if (!isAdmin && !isOwner) {
+    throw new ApiError(403, 'You are not authorized to delete this post')
+  }
   return await prisma.$transaction(async prisma => {
     await prisma.postClick.deleteMany({
       where: {

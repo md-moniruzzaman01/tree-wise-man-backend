@@ -8,16 +8,13 @@ const router = express.Router()
 
 router.get(
   '/',
-  // auth(
-  //     ENUM_USER_ROLE.ADMIN,
-  //     ENUM_USER_ROLE.SUPER_ADMIN,
-  // ),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   customerController.getAllFromDB,
 )
 
 router.get(
   '/:id',
-  // auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.USER),
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.USER),
   customerController.getByIdFromDB,
 )
 
@@ -30,7 +27,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
   customerController.deleteFromDB,
 )
 

@@ -100,7 +100,8 @@ const AdvanceUpdateOneInDB = catchAsync(async (req: Request, res: Response) => {
 
 const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params
-  const result = await postService.deleteByIdFromDB(id)
+  const user = req.user
+  const result = await postService.deleteByIdFromDB(id, user)
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
